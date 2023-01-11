@@ -14,7 +14,7 @@
     <div class="section-body">
         <div class="card">
         <div class="card-header">
-          <h4>Category Form</h4>
+          <h4>Menu Form</h4>
         </div>
         <form action="{{ route('menu.store') }}" method="post" enctype="multipart/form-data">
             @csrf

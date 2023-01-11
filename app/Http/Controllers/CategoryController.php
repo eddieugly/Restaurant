@@ -64,7 +64,11 @@ class CategoryController extends Controller
             'type' => $request->type
         ]);
 
-        return redirect()->route('category.index')->with('toast_success', 'Category Created Successfully!');
+        if ($request->type == 0) {
+            return redirect(route('category.index').'?type=menu')->with('toast_success', 'Category Updated Successfully!');
+        }else {
+            return redirect(route('category.index').'?type=blog')->with('toast_success', 'Category Updated Successfully!');
+        }
     }
 
     /**

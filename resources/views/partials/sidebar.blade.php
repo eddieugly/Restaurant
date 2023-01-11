@@ -13,7 +13,7 @@
         </li>
         <li class="menu-header">Starter</li>
         <li class="dropdown {{ request()->routeIs('category.*') ? 'active' : '' }}">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Cateegory</span></a>
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Category</span></a>
           <ul class="dropdown-menu">
             <li class="{{ request('type') == 'menu' ? 'active' : '' }}"><a class="nav-link" href="{{ route('category.index').'?type=menu' }}">Menu Category</a></li>
             <li class="{{ request('type') == 'blog' ? 'active' : '' }}"><a class="nav-link" href="{{ route('category.index').'?type=blog' }}">Blog Category</a></li>
@@ -32,6 +32,14 @@
           <ul class="dropdown-menu">
             <li class="{{ request()->routeIs('blog.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('blog.index') }}">Blog List</a></li>
             <li class="{{ request()->routeIs('blog.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('blog.create') }}">Create Blog</a></li>
+          </ul>
+        </li>
+        <li class="dropdown {{ request()->routeIs('gallery.*') ? 'active' : '' }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Gallery</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ request('type') == 'photo' ? 'active' : '' }}"><a class="nav-link" href="{{ route('gallery.index').'?type=photo' }}">Photo Gallery</a></li>
+            <li class="{{ request('type') == 'video' ? 'active' : '' }}"><a class="nav-link" href="{{ route('gallery.index').'?type=video' }}">Video Gallery</a></li>
+            <li class="{{ request()->routeIs('gallery.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('gallery.create') }}">Add Gallery</a></li>
           </ul>
         </li>
       </ul>

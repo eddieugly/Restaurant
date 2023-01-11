@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
 
   <!-- CSS Libraries -->
+  <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/jquery-selectric/selectric.css') }}">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -58,6 +60,9 @@
     <script src="{{ asset('assets/js/stisla.js') }}"></script>
     
     <!-- JS Libraies -->
+  <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+  <script src="{{ asset('assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
   
     <!-- Page Specific JS File -->
     @yield('scripts')

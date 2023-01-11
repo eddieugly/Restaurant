@@ -20,6 +20,13 @@
             <li class="{{ request()->routeIs('category.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('category.create') }}">Create Category</a></li>
           </ul>
         </li>
+        <li class="dropdown {{ request()->routeIs('menu.*') ? 'active' : '' }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Menu</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ request()->routeIs('menu.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('menu.index') }}">Menu List</a></li>
+            <li class="{{ request()->routeIs('menu.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('menu.create') }}">Create Menu</a></li>
+          </ul>
+        </li>
       </ul>
 
       </aside>

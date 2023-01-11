@@ -27,6 +27,13 @@
             <li class="{{ request()->routeIs('menu.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('menu.create') }}">Create Menu</a></li>
           </ul>
         </li>
+        <li class="dropdown {{ request()->routeIs('blog.*') ? 'active' : '' }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Blog</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ request()->routeIs('blog.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('blog.index') }}">Blog List</a></li>
+            <li class="{{ request()->routeIs('blog.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('blog.create') }}">Create Blog</a></li>
+          </ul>
+        </li>
       </ul>
 
       </aside>

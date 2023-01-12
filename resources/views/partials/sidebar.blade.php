@@ -42,6 +42,13 @@
             <li class="{{ request()->routeIs('gallery.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('gallery.create') }}">Add Gallery</a></li>
           </ul>
         </li>
+        <li class="dropdown {{ request()->routeIs('slider.*') ? 'active' : '' }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Slider</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ request()->routeIs('slider.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('slider.index') }}">Slider List</a></li>
+            <li class="{{ request()->routeIs('slider.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('slider.create') }}">Add Slider</a></li>
+          </ul>
+        </li>
       </ul>
 
       </aside>

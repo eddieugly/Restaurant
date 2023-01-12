@@ -38,6 +38,10 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     Route::resource('/gallery', \App\Http\Controllers\GalleryController::class, ['names' => 'gallery']);
 
+    // Slider Routes
+
+    Route::resource('/slider', \App\Http\Controllers\SliderController::class, ['names' => 'slider']);
+
 });
 
 

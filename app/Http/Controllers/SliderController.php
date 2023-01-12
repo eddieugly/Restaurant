@@ -100,7 +100,7 @@ class SliderController extends Controller
         if ($request->hasFile('thumbnail')) {
             $image = $request->file('thumbnail');
             $path = 'uploads/slider/';
-            $old_path = public_path($slider->thumnail);
+            $old_path = public_path($slider->thumbnail);
         }
 
         $slider->update([

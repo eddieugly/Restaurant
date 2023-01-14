@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +13,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +25,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $sliders = Slider::all();
+        $menus = Menu::orderBy('id', 'DESC')->limit(8)->get();
+        $general = '';
+
+        return view('home', compact('sliders', 'menus', 'general'));
+    }
+
+    public function menu()
+    {
+
+        
+        
+        $menues = Menu::orderBy('id', 'DESC')->limit(8)->get();
+
+        return view('frontend.menu', compact('menus'));
     }
 }

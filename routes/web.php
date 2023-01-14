@@ -21,3 +21,5 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/menu', [App\Http\Controllers\HomeController::class, 'menu'])->name('menu');
+
+Route::post('/reserve', [App\Http\Controllers\HomeController::class, 'reserve'])->name('reserve');

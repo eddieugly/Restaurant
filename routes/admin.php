@@ -41,6 +41,14 @@ Route::group(['middleware' => ['role:admin']], function () {
     // Slider Routes
 
     Route::resource('/slider', \App\Http\Controllers\SliderController::class, ['names' => 'slider']);
+    
+    // Slider Routes
+
+    Route::get('/reservation', [App\Http\Controllers\ReserveController::class, 'index'])->name('admin.reserve');
+
+    Route::get('/reservation/{type}/{reserve}', [App\Http\Controllers\ReserveController::class, 'confirmation'])->name('admin.reserve.confirmation');
+
+    Route::delete('/reservation/{reserve}', [App\Http\Controllers\ReserveController::class, 'delete'])->name('admin.reserve.delete');
 
 });
 

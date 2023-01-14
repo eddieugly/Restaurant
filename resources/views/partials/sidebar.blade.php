@@ -8,7 +8,7 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
-        <li class="dropdown">
+        <li class="active">
           <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
         </li>
         <li class="menu-header">Starter</li>
@@ -48,6 +48,9 @@
             <li class="{{ request()->routeIs('slider.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('slider.index') }}">Slider List</a></li>
             <li class="{{ request()->routeIs('slider.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('slider.create') }}">Add Slider</a></li>
           </ul>
+        </li>
+        <li class="{{ request()->routeIs('admin.reserve') ? 'active' : '' }}">
+          <a href="{{ route('admin.reserve') }}" class="nav-link"><i class="fas fa-fire"></i><span>Reservations</span></a>
         </li>
       </ul>
 

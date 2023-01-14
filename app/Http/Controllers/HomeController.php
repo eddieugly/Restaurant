@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Slider;
+use App\Models\Reserve;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -37,9 +38,27 @@ class HomeController extends Controller
     {
 
         
-        
-        $menues = Menu::orderBy('id', 'DESC')->limit(8)->get();
+        $starters = Menu::orderBy('price')->limit(4)->get();
+        $menus = Menu::orderBy('id', 'DESC')->get();
 
-        return view('frontend.menu', compact('menus'));
+        return view('frontend.menu', compact('menus', 'starters'));
+    }
+
+    public function reserve(Request $request)
+    {
+
+        Reserve::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'people' => $request->people,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'description' => $request->description,
+            'status' => 0
+        ]);
+
+        return back()->with('toast_success', "Reservation Request Submitted!");
+
     }
 }

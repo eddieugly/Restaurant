@@ -23,3 +23,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/menu', [App\Http\Controllers\HomeController::class, 'menu'])->name('menu');
 
 Route::post('/reserve', [App\Http\Controllers\HomeController::class, 'reserve'])->name('reserve');
+
+Route::get('/gallery/{type}', [App\Http\Controllers\HomeController::class, 'gallery'])->name('gallery');
+
+Route::get('/blogs', [App\Http\Controllers\HomeController::class, 'blog'])->name('allblogs');
+
+Route::get('/blog/{blog}', [App\Http\Controllers\HomeController::class, 'getBlog'])->name('get.blog');
+
+Route::get('/category/blog/{id}', [App\Http\Controllers\HomeController::class, 'getCategoryBlogs'])->name('category.blog');

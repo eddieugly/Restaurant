@@ -54,7 +54,7 @@
           
         </div>
             <div class="card-footer">       
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Add Category</button>
             </div>
         </form>
         

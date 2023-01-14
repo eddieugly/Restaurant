@@ -3,8 +3,8 @@
     <div class="container-fluid">
         <div id="logo">
             <a href="{{ route('home') }}">
-                <img src="{{ asset($general ? $general->logo:'') }}" width="140" height="35" alt="" class="logo_normal">
-                <img src="{{ asset($general ? $general->logo:'') }}" width="140" height="35" alt="" class="logo_sticky">
+                {{-- <img src="{{ asset($general ? $general->logo:'') }}" width="140" height="35" alt="" class="logo_normal">
+                <img src="{{ asset($general ? $general->logo:'') }}" width="140" height="35" alt="" class="logo_sticky"> --}}
             </a>
         </div>
         <ul id="top_menu">
@@ -39,16 +39,16 @@
                 <li class="submenu">
                     <a href="{{ route('menu') }}" class="show-submenu">Food Menu</a>
                 </li>
-                {{-- <li class="submenu">
+                <li class="submenu">
                     <a href="#" class="show-submenu">Gallery</a>
                     <ul>
                         <li><a href="{{ route('gallery', 'photo') }}">Photo Gallery</a></li>
                         <li><a href="{{ route('gallery', 'video') }}">Video Gallery</a></li>
                     </ul>
-                </li> --}}
-                {{-- <li class="submenu">
+                </li>
+                <li class="submenu">
                     <a href="{{ route('allblogs') }}" class="show-submenu">Blog</a>
-                </li> --}}
+                </li>
                 {{-- <li class="submenu">
                     <a href="{{ route('contact') }}" class="show-submenu">Contact Us</a>
                 </li> --}}

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Category;
+use App\Models\Gallery;
 use App\Models\Menu;
 use App\Models\Slider;
 use App\Models\Reserve;
@@ -59,6 +62,52 @@ class HomeController extends Controller
         ]);
 
         return back()->with('toast_success', "Reservation Request Submitted!");
+
+    }
+
+    public function gallery($type)
+    {
+        $general = '';
+        if ($type === 'photo') {
+            $data = Gallery::where('type', 0)->get();
+            return view('frontend.gallery.photo', compact('data', 'general'));
+        }
+
+        $data = Gallery::where('type', 1)->get();
+        return view('frontend.gallery.video', compact('data', 'general'));
+
+    }
+
+    public function blog()
+    {
+        $page_title = "Blogs";
+        $blogs = Blog::all();
+        $categories = Category::where('type', 1)->get();
+        $latests = Blog::latest('created_at')->limit(3)->get();
+        return view('frontend.blog.index', compact('page_title', 'blogs', 'categories', 'latests'));
+
+    }
+
+    public function getBlog(Blog $blog)
+    {
+        $page_title = "Blogs";
+
+        $categories = Category::where('type', 1)->get();
+        $latests = Blog::latest('created_at')->limit(3)->get();
+        
+        return view('frontend.blog.details', compact('page_title', 'categories', 'latests', 'blog'));
+
+    }
+
+    public function getCategoryBlog($id)
+    {
+        $page_title = "Blogs";
+
+        $blogs = Blog::where('category_id', $id)->get();
+        $latests = Blog::latest('created_at')->limit(3)->get();
+        $categories = Category::where('type', 1)->get();
+        
+        return view('frontend.blog.index', compact('page_title', 'categories', 'latests', 'blogs'));
 
     }
 }

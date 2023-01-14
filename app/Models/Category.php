@@ -15,4 +15,9 @@ class Category extends Model
         'thumbnail',
         'type',
     ];
+
+    function blog()
+    {
+        $this->hasMany(Blog::class);
+    }
 }

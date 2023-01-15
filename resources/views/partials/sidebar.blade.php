@@ -49,6 +49,14 @@
             <li class="{{ request()->routeIs('slider.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('slider.create') }}">Add Slider</a></li>
           </ul>
         </li>
+        </li>
+        <li class="dropdown {{ request()->routeIs('service.*') ? 'active' : '' }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Services</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ request()->routeIs('service.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('service.index') }}">Service List</a></li>
+            <li class="{{ request()->routeIs('service.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('service.create') }}">Add Service</a></li>
+          </ul>
+        </li>
         <li class="{{ request()->routeIs('admin.reserve') ? 'active' : '' }}">
           <a href="{{ route('admin.reserve') }}" class="nav-link"><i class="fas fa-fire"></i><span>Reservations</span></a>
         </li>

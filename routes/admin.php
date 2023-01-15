@@ -30,9 +30,13 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     Route::resource('/menu', \App\Http\Controllers\MenuController::class, ['names' => 'menu']);
 
-    // Menu Routes
+    // Service Routes
 
     Route::resource('/service', \App\Http\Controllers\ServiceController::class, ['names' => 'service']);
+
+    // Staff Routes
+
+    Route::resource('/staff', \App\Http\Controllers\StaffController::class, ['names' => 'staff']);
 
     // Blog Routes
 

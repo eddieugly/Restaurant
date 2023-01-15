@@ -57,6 +57,13 @@
             <li class="{{ request()->routeIs('service.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('service.create') }}">Add Service</a></li>
           </ul>
         </li>
+        <li class="dropdown {{ request()->routeIs('staff.*') ? 'active' : '' }}">
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Staff</span></a>
+          <ul class="dropdown-menu">
+            <li class="{{ request()->routeIs('staff.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('staff.index') }}">Staff List</a></li>
+            <li class="{{ request()->routeIs('staff.create') ? 'active' : '' }}"><a class="nav-link" href="{{ route('staff.create') }}">Add Staff</a></li>
+          </ul>
+        </li>
         <li class="{{ request()->routeIs('admin.reserve') ? 'active' : '' }}">
           <a href="{{ route('admin.reserve') }}" class="nav-link"><i class="fas fa-fire"></i><span>Reservations</span></a>
         </li>

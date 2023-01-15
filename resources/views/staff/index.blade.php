@@ -17,24 +17,24 @@
                         <thead>
                             <tr>
                                 <th>Sl No.</th>
-                                <th>Title</th>
+                                <th>Name</th>
+                                <th>Designation</th>
                                 <th>Thumbnail</th>
-                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($services as $item)
+                            @foreach ($staffs as $item)
         
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $item->title }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td>
-                                    <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->title }}" width="60">
+                                    <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="60">
                                 </td>
-                                <td>{!! Str::limit($item->description, 50) !!}</td>
+                                <td>{{ $item->designation }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('service.edit', $item->id) }}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ route('staff.edit', $item->id) }}">Edit</a>
                                     <button type="button" id="{{ $item->id }}" class="btn btn-danger delete" data-toggle="modal" data-target="#exampleModal">Delete</button>
                                 </td>
                             </tr>
@@ -85,7 +85,7 @@
             
             const id = this.id;
 
-            $('#deleteModal').attr('action', "{{ route('service.destroy', '') }}" + '/' + id);
+            $('#deleteModal').attr('action', "{{ route('staff.destroy', '') }}" + '/' + id);
 
         });
 

@@ -24,6 +24,21 @@ Route::get('/menu', [App\Http\Controllers\HomeController::class, 'menu'])->name(
 
 Route::post('/mail', [App\Http\Controllers\HomeController::class, 'mail'])->name('mail');
 
+
+// Cart Routes
+Route::get('/cart/{menu}/{user}', [App\Http\Controllers\CartController::class, 'addCart'])->name('cart.add');
+
+Route::get('/carts/{user}/', [App\Http\Controllers\CartController::class, 'getCart'])->name('getcart');
+
+Route::post('/cart/update/{user}/', [App\Http\Controllers\CartController::class, 'updateCart'])->name('cart.update');
+
+Route::delete('/cart/{cart}/{user}/', [App\Http\Controllers\CartController::class, 'destroy'])->name('cart.delete');
+
+
+// Checkout
+Route::get('/order/{user}/', [App\Http\Controllers\OrderController::class, 'checkout'])->name('order');
+
+
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');

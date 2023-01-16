@@ -12,9 +12,9 @@
             @guest
                 @else
                 <li>
-                    {{-- <div class="dropdown dropdown-cart">
+                    <div class="dropdown dropdown-cart">
                         <a href="{{ route('getcart', auth()->user()->id) }}" class="cart_bt"><i class="fas fa-cart-plus"></i> <strong>{{ App\Models\Cart::where('user_id', auth()->user()->id)->sum('quantity'); }}</strong></a>
-                    </div> --}}
+                    </div>
                 </li>
             @endguest
         </ul>

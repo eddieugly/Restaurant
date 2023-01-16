@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', 'Service List')
+@section('title', $page_title)
 
 @section('content')
     

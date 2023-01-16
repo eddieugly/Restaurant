@@ -110,4 +110,24 @@ class HomeController extends Controller
         return view('frontend.blog.index', compact('page_title', 'categories', 'latests', 'blogs'));
 
     }
+
+    public function about()
+    {
+        $page_title = "About Us";
+        $blogs = Blog::all();
+        $categories = Category::where('type', 1)->get();
+        $latests = Blog::latest('created_at')->limit(3)->get();
+        return view('frontend.about', compact('page_title', 'blogs', 'categories', 'latests'));
+
+    }
+
+    public function contact()
+    {
+        $page_title = "Contact";
+        $blogs = Blog::all();
+        $categories = Category::where('type', 1)->get();
+        $latests = Blog::latest('created_at')->limit(3)->get();
+        return view('frontend.contact', compact('page_title', 'blogs', 'categories', 'latests'));
+
+    }
 }

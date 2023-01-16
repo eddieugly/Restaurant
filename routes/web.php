@@ -22,6 +22,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/menu', [App\Http\Controllers\HomeController::class, 'menu'])->name('menu');
 
+Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
+
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+
 Route::post('/reserve', [App\Http\Controllers\HomeController::class, 'reserve'])->name('reserve');
 
 Route::get('/gallery/{type}', [App\Http\Controllers\HomeController::class, 'gallery'])->name('gallery');

@@ -3,8 +3,8 @@
     <div class="container-fluid">
         <div id="logo">
             <a href="{{ route('home') }}">
-                {{-- <img src="{{ asset($general ? $general->logo:'') }}" width="140" height="35" alt="" class="logo_normal">
-                <img src="{{ asset($general ? $general->logo:'') }}" width="140" height="35" alt="" class="logo_sticky"> --}}
+                <img src="{{ asset($general ? $general->logo:'') }}" width="140" height="35" alt="" class="logo_normal">
+                <img src="{{ asset($general ? $general->logo:'') }}" width="140" height="35" alt="" class="logo_sticky">
             </a>
         </div>
         <ul id="top_menu">
@@ -12,9 +12,9 @@
             @guest
                 @else
                 <li>
-                    <div class="dropdown dropdown-cart">
+                    {{-- <div class="dropdown dropdown-cart">
                         <a href="{{ route('getcart', auth()->user()->id) }}" class="cart_bt"><i class="fas fa-cart-plus"></i> <strong>{{ App\Models\Cart::where('user_id', auth()->user()->id)->sum('quantity'); }}</strong></a>
-                    </div>
+                    </div> --}}
                 </li>
             @endguest
         </ul>

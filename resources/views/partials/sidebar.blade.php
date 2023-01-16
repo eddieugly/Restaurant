@@ -67,6 +67,9 @@
         <li class="{{ request()->routeIs('admin.reserve') ? 'active' : '' }}">
           <a href="{{ route('admin.reserve') }}" class="nav-link"><i class="fas fa-fire"></i><span>Reservations</span></a>
         </li>
+        <li class="{{ request()->routeIs('admin.general') ? 'active' : '' }}">
+          <a href="{{ route('admin.general') }}" class="nav-link"><i class="fas fa-fire"></i><span>General Information</span></a>
+        </li>
       </ul>
 
       </aside>

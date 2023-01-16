@@ -33,9 +33,9 @@
                 <li class="submenu">
                     <a href="{{ route('home') }}" class="show-submenu">Home</a>
                 </li>
-                {{-- <li class="submenu">
+                <li class="submenu">
                     <a href="{{ route('about') }}" class="show-submenu">About Us</a>
-                </li> --}}
+                </li>
                 <li class="submenu">
                     <a href="{{ route('menu') }}" class="show-submenu">Food Menu</a>
                 </li>
@@ -49,9 +49,9 @@
                 <li class="submenu">
                     <a href="{{ route('allblogs') }}" class="show-submenu">Blog</a>
                 </li>
-                {{-- <li class="submenu">
+                <li class="submenu">
                     <a href="{{ route('contact') }}" class="show-submenu">Contact Us</a>
-                </li> --}}
+                </li>
                 @guest
                 <li><a href="javascript:void(0)" class="btn_top" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></li>
                 <li><a href="javascript:void(0)" class="btn_top" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a></li>

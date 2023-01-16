@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title', 'About')
+@section('title', $page_title)
 
 @section('breadcrumb')
     <div class="col-xl-9 col-lg-10 col-md-8">
@@ -30,7 +30,7 @@
                 <div class="intro_txt" data-cue="slideInUp" data-delay="500">
                     <div class="main_title">
                         <span><em></em></span>
-                        <h2>Why Choose Foore</h2>
+                        <h2>Why Choose Us</h2>
                     </div>
                     <p class="lead">{!! $general ? $general->why_choose_us:'' !!}</p>
                 </div>

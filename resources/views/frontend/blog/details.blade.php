@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title', 'Blog Details')
+@section('title', $page_title)
 
 @section('breadcrumb')
     <div class="col-xl-9 col-lg-10 col-md-8">

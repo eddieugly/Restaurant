@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Contact;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Gallery;
+use App\Models\General;
 use App\Models\Menu;
 use App\Models\Slider;
 use App\Models\Reserve;
+use App\Models\Service;
+use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -61,7 +66,7 @@ class HomeController extends Controller
             'status' => 0
         ]);
 
-        return back()->with('toast_success', "Reservation Request Submitted!");
+        return back()->with('success', "Reservation Request Submitted!");
 
     }
 
@@ -114,20 +119,38 @@ class HomeController extends Controller
     public function about()
     {
         $page_title = "About Us";
-        $blogs = Blog::all();
-        $categories = Category::where('type', 1)->get();
-        $latests = Blog::latest('created_at')->limit(3)->get();
-        return view('frontend.about', compact('page_title', 'blogs', 'categories', 'latests'));
+        $services = Service::limit(4)->get();
+        $staffs = Staff::all();
+        return view('frontend.about', compact('page_title', 'services', 'staffs'));
 
     }
 
     public function contact()
     {
-        $page_title = "Contact";
-        $blogs = Blog::all();
-        $categories = Category::where('type', 1)->get();
-        $latests = Blog::latest('created_at')->limit(3)->get();
-        return view('frontend.contact', compact('page_title', 'blogs', 'categories', 'latests'));
+        $page_title = "Contact Us";
+        return view('frontend.contact', compact('page_title'));
+
+    }
+
+    public function mail(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'message' => 'required'
+        ]);
+
+        $general = General::latest('created_at')->first();
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message
+        ];
+
+        Mail::to($general->email)->send(new Contact($data));
+
+        return back()->with('success', 'Message Sent Successfully!');
 
     }
 }

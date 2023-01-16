@@ -22,6 +22,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/menu', [App\Http\Controllers\HomeController::class, 'menu'])->name('menu');
 
+Route::post('/mail', [App\Http\Controllers\HomeController::class, 'mail'])->name('mail');
+
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');

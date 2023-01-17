@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Cart;
 use App\Models\Order;
+use Stripe\StripeClient;
 use App\Models\OrderMeta;
 use Illuminate\Http\Request;
 
@@ -35,8 +37,6 @@ class OrderController extends Controller
             'total' => 'required'
         ]);
 
-        
-
         $order = Order::create([
             'user_id' => $user,
             'name' => $request->name,
@@ -51,6 +51,40 @@ class OrderController extends Controller
             'order_status' => 0,
             'total' => $request->total
         ]);
+
+
+        if ($request->payment_method == 3) {
+            
+            $request->validate([
+                'number' => 'required',
+                'exp_month' => 'required',
+                'exp_year' => 'required',
+                'cvc' => 'required',
+            ]);
+
+            $stripe = new  StripeClient(
+                'sk_test_51MRFYFLfpkZUrDUUqc6eOFHDPiwRZOSMpXQRrFR7KPTNTF2p16mvkOt6S4QPpcpeF1MpJhIdKpIuWG1BowSIAMMx00Vb3fCMgl'
+              );
+              $token = $stripe->tokens->create([
+                'card' => [
+                  'number' => $request->number,
+                  'exp_month' => $request->exp_month,
+                  'exp_year' => $request->exp_year,
+                  'cvc' => $request->cvc,
+                ],
+              ]);
+
+              $stripe->charges->create([
+                'amount' => $request->total * 100,
+                'currency' => 'usd',
+                'source' => $token->id,
+                'description' => 'Paid By '.$request->name,
+              ]);
+
+              $order->payment_status = 1;
+              $order->update();
+        }
+
 
         for ($i=0; $i < count($request->menu_id); $i++) { 
             

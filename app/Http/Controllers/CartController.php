@@ -40,7 +40,7 @@ class CartController extends Controller
         $subtotal = 0;
 
         foreach ($carts as $cart) {
-           $subtotal += $cart->quantity * $cart->menu->price;
+            $subtotal += $cart->quantity * $cart->menu->price;
         }
 
         return view('frontend.cart', compact('page_title', 'carts', 'subtotal'));

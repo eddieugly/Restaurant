@@ -19,7 +19,7 @@ class Order extends Model
         'postal_code',
         'total',
         'payment_method',
-        'payment_ststus',
+        'payment_status',
         'order_status'
     ];
 }

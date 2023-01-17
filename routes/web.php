@@ -32,11 +32,13 @@ Route::get('/carts/{user}/', [App\Http\Controllers\CartController::class, 'getCa
 
 Route::post('/cart/update/{user}/', [App\Http\Controllers\CartController::class, 'updateCart'])->name('cart.update');
 
-Route::delete('/cart/{cart}/{user}/', [App\Http\Controllers\CartController::class, 'destroy'])->name('cart.delete');
+Route::get('/cart/delete/{cart}/{user}/', [App\Http\Controllers\CartController::class, 'destroy'])->name('cart.delete');
 
 
 // Checkout
-Route::get('/order/{user}/', [App\Http\Controllers\OrderController::class, 'checkout'])->name('order');
+Route::get('/order/{user}/', [App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout');
+
+Route::post('/order/{user}/', [App\Http\Controllers\OrderController::class, 'order'])->name('order');
 
 
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');

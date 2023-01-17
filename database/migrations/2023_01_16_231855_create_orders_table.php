@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('postal_code');
             $table->string('total');
             $table->integer('payment_method')->comment('1 => cash on delivery, 2 => paypal, 3 => card');
-            $table->integer('payment_ststus')->comment('0 => due, 1 => paid');
+            $table->integer('payment_status')->comment('0 => due, 1 => paid');
             $table->integer('order_status')->comment('0 => pending, 1 => completed, 2 => cancelled');
             $table->timestamps();
         });

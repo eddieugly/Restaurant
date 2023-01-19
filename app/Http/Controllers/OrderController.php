@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Cart;
+use Omnipay\Omnipay;
 use App\Models\Order;
 use Stripe\StripeClient;
 use App\Models\OrderMeta;
@@ -11,6 +12,17 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    private $gateway;
+
+    public function __construct()
+    {
+        $this->gateway = Omnipay::create('PayPal_Rest');
+        $this->gateway->setClientId('AbZJI7F5G4HwOFvAjbeRzYw80NXEEAWuhhKZ3Upilw5gYUEKAPyocKUpLr0hKhRj4I9LyWdpTxA_Kab5');
+        $this->gateway->setSecret('EJ5bBwD_Jh1DgBpP520ATmXCfRwWHYae6IHvFlRXV4eda7LBkCWoJ62KGLRR027FsEBMQgJwGZrPoNvl');
+        $this->gateway->setTestMode(true);
+    }
+    
     public function checkout($user)
     {
         $page_title = 'Carts';
@@ -85,6 +97,32 @@ class OrderController extends Controller
               $order->update();
         }
 
+        if ($request->payment_method == 2) {
+            
+            
+
+            
+
+            $formData = array('number' => '4242424242424242', 'expiryMonth' => '6', 'expiryYear' => '2030', 'cvv' => '123');
+            $response = $this->gateway->purchase(array(
+                'amount' => $request->total,
+                'currency' => 'USD',
+                'returnUrl' => route('success', $order->id),
+                'cancelUrl' => route('cancel')
+            ))->send();
+
+            if ($response->isRedirect()) {
+                // redirect to offsite payment gateway
+                $response->redirect();
+            } elseif ($response->isSuccessful()) {
+                // payment was successful: update database
+                print_r($response);
+            } else {
+                // payment failed: display message to customer
+                echo $response->getMessage();
+            }
+        }
+
 
         for ($i=0; $i < count($request->menu_id); $i++) { 
             
@@ -100,5 +138,43 @@ class OrderController extends Controller
         Cart::where('user_id', $user)->delete();
 
         return redirect(route('home'))->with('success', 'Order Sent Successfully!');
+    }
+
+    public function success(Order $order)
+    {
+        // dd(request('paymentId'), request('PayerID'));
+        if (request('paymentId') && request('PayerID')) {
+
+            $transaction = $this->gateway->completePurchase(array(
+
+                'payer_id' => request('PayerID'),
+                'transactionReference' => request('paymentId')
+
+            ));
+            
+            $response = $transaction->send();
+
+            if ($response->isSuccessful()) {
+
+                $order->update([
+                    'payment_status' => 1
+                ]);
+
+                $data = $response->getData();
+                
+                return redirect(route('home'))->with('success', 'Order Sent Successfully. Transaction ID is: '.$data['id']);
+            } else {
+                
+                return 'Payment Failed';
+            }
+        } else {
+            
+            return 'Payment Failed';
+        }
+    }
+
+    public function cancel()
+    {
+        return 'The payment has been cancelled';
     }
 }

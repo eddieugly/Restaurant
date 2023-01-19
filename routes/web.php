@@ -40,6 +40,10 @@ Route::get('/order/{user}/', [App\Http\Controllers\OrderController::class, 'chec
 
 Route::post('/order/{user}/', [App\Http\Controllers\OrderController::class, 'order'])->name('order');
 
+Route::get('/order/success/{order}', [App\Http\Controllers\OrderController::class, 'success'])->name('success');
+
+Route::get('/order/cancel', [App\Http\Controllers\OrderController::class, 'cancel'])->name('cancel');
+
 
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 

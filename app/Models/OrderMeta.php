@@ -15,4 +15,9 @@ class OrderMeta extends Model
         'quantity',
         'price'
     ];
+
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
 }

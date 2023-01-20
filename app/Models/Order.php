@@ -22,4 +22,9 @@ class Order extends Model
         'payment_status',
         'order_status'
     ];
+
+    public function details()
+    {
+        return $this->hasMany(OrderMeta::class);
+    }
 }

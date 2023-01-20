@@ -57,8 +57,16 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/reservation/{type}/{reserve}', [App\Http\Controllers\ReserveController::class, 'confirmation'])->name('admin.reserve.confirmation');
 
     Route::delete('/reservation/{reserve}', [App\Http\Controllers\ReserveController::class, 'delete'])->name('admin.reserve.delete');
-
+    
     // Reservation Routes
+
+    Route::get('/order', [App\Http\Controllers\OrderShowController::class, 'index'])->name('admin.order');
+
+    Route::get('/order/{type}/{order}', [App\Http\Controllers\OrderShowController::class, 'confirmation'])->name('admin.order.confirmation');
+
+    Route::delete('/order/{order}', [App\Http\Controllers\OrderShowController::class, 'delete'])->name('admin.order.delete');
+
+    // General Information Routes
 
     Route::get('/general', [App\Http\Controllers\GeneralController::class, 'index'])->name('admin.general');
 

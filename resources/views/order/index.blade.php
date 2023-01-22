@@ -5,7 +5,7 @@
 @section('content')
     
 
-<section class="section">
+  <section class="section">
     <div class="section-header">
       <h1>{{ $page_title }}</h1>
     </div>

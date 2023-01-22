@@ -1,51 +1,60 @@
 @extends('layouts.backend')
 @section('title', 'All Reservations')
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>{{ $page_title }}</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Sl No.</th>
-                                <th>Date</th>
-                                <th>Name</th>
-                                <th>Time</th>
-                                <th>People</th>
-                                <th>Phone</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($reservations as $item)
+    
+<section class="section">
+    <div class="section-header">
+      <h1>{{ $page_title }}</h1>
+    </div>
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ $page_title }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
                                 <tr>
-                                    <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $item->date }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->time }}</td>
-                                    <td>{{ $item->people }}</td>
-                                    <td>{{ $item->phone }}</td>
-                                    <td><span class="badge {{ $item->status === 0 ? 'badge-warning':($item->status === 1 ? 'badge-success':'badge-danger') }}">{{ $item->status === 0 ? 'pending':($item->status === 1 ? 'reserved':'canceled') }}</span></td>
-                                    <td>
-                                        <a class="btn btn-primary" href="{{ route('admin.reserve.confirmation',['accept', $item->id] ) }}">Accept</a>
-                                        <a class="btn btn-warning" href="{{ route('admin.reserve.confirmation',['decline', $item->id] ) }}">Decline</a>
-                                        <button class="btn btn-danger delete" type="button" id="{{ $item->id }}" class="btn btn-primary"
-                                            data-toggle="modal" data-target="#exampleModal">Delete</button>
-                                    </td>
+                                    <th>Sl No.</th>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Time</th>
+                                    <th>People</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($reservations as $item)
+                                    <tr>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td>{{ $item->date }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->time }}</td>
+                                        <td>{{ $item->people }}</td>
+                                        <td>{{ $item->phone }}</td>
+                                        <td><span class="badge {{ $item->status === 0 ? 'badge-warning':($item->status === 1 ? 'badge-success':'badge-danger') }}">{{ $item->status === 0 ? 'pending':($item->status === 1 ? 'reserved':'canceled') }}</span></td>
+                                        <td>
+                                            <a class="btn btn-primary" href="{{ route('admin.reserve.confirmation',['accept', $item->id] ) }}">Accept</a>
+                                            <a class="btn btn-warning" href="{{ route('admin.reserve.confirmation',['decline', $item->id] ) }}">Decline</a>
+                                            <button class="btn btn-danger delete" type="button" id="{{ $item->id }}" class="btn btn-primary"
+                                                data-toggle="modal" data-target="#exampleModal">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
+</section>
+    
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

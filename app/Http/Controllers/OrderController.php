@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Cart;
-use Omnipay\Omnipay;
 use App\Models\Order;
-use Stripe\StripeClient;
 use App\Models\OrderMeta;
 use Illuminate\Http\Request;
+use Stripe\StripeClient;
+use Omnipay\Omnipay;
 
 class OrderController extends Controller
 {
@@ -65,6 +65,18 @@ class OrderController extends Controller
         ]);
 
 
+        for ($i=0; $i < count($request->menu_id); $i++) { 
+            
+            OrderMeta::create([
+
+                'order_id' => $order->id,
+                'menu_id' => $request->menu_id[$i],
+                'quantity' => $request->quantity[$i],
+                'price' => $request->price[$i],
+            ]);
+        }
+
+
         if ($request->payment_method == 3) {
             
             $request->validate([
@@ -88,7 +100,7 @@ class OrderController extends Controller
 
               $stripe->charges->create([
                 'amount' => $request->total * 100,
-                'currency' => 'usd',
+                'currency' => 'USD',
                 'source' => $token->id,
                 'description' => 'Paid By '.$request->name,
               ]);
@@ -98,17 +110,11 @@ class OrderController extends Controller
         }
 
         if ($request->payment_method == 2) {
-            
-            
-
-            
-
-            $formData = array('number' => '4242424242424242', 'expiryMonth' => '6', 'expiryYear' => '2030', 'cvv' => '123');
             $response = $this->gateway->purchase(array(
                 'amount' => $request->total,
                 'currency' => 'USD',
                 'returnUrl' => route('success', $order->id),
-                'cancelUrl' => route('cancel')
+                'cancelUrl' => route('cancel'),
             ))->send();
 
             if ($response->isRedirect()) {
@@ -124,16 +130,7 @@ class OrderController extends Controller
         }
 
 
-        for ($i=0; $i < count($request->menu_id); $i++) { 
-            
-            OrderMeta::create([
-
-                'order_id' => $order->id,
-                'menu_id' => $request->menu_id[$i],
-                'quantity' => $request->quantity[$i],
-                'price' => $request->price[$i],
-            ]);
-        }
+        
         
         Cart::where('user_id', $user)->delete();
 

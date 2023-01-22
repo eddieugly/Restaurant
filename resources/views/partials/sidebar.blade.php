@@ -8,8 +8,8 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
-        <li class="active">
-          <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+        <li class="{{ request()->routeIs('admin.home') ? 'active' : '' }}">
+          <a href="{{ route('admin.home') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
         </li>
         <li class="menu-header">Starter</li>
         <li class="dropdown {{ request()->routeIs('category.*') ? 'active' : '' }}">

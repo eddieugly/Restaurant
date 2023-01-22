@@ -15,11 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['role:admin']], function () {
 
-    Route::get('/', function(){
-
-        return view('layouts.backend');
-
-    });
+    Route::get('/', [App\Http\Controllers\Backend\HomeController::class, 'index'])->name('admin.home');
 
     // Category Routes
 
